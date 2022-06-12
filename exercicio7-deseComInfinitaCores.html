@@ -1,0 +1,41 @@
+<canvas width="800" height="600"></canvas>
+<br>
+<h3>esconha uma cor</h3> <input type="color">
+
+<script>
+// semelhante ao canva atribuimo o valor do input dentro de uma variavel 
+    var paleta = document.querySelector('input')
+
+    var tela = document.querySelector("canvas");
+    var pincel = tela.getContext("2d");
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(000, 000, 800, 600);
+
+    function desenhaCirculo(evento){
+ 
+        if(desenha){
+            var x = evento.pageX - tela.offsetLeft;
+            var y = evento.pageY - tela.offsetTop;
+
+            pincel.fillStyle = paleta.value;// sempre pega o valor atual da paleta
+            pincel.beginPath();
+            pincel.arc(x, y, 10, 0, 2*3.14);
+            pincel.fill();
+        }
+        console.log(x + ',' + y);
+    }
+
+    tela.onmousemove = desenhaCirculo;
+
+    function habilitaDesenhar(){
+        desenha = true;
+    }
+
+    function desabilitaDesenhar(){
+        desenha = false
+    }
+
+    tela.onmousedown = habilitaDesenhar;
+    tela.onmouseup = desabilitaDesenhar;
+</script>
